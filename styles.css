@@ -1,0 +1,244 @@
+
+.landing-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  
+  color: #fff;
+  padding-left: 5%;
+  padding-right: 5%;
+
+}
+/* Animation for each child */
+.landing-container > * {
+  opacity: 0; /* Start with 0 opacity */
+  animation: fadeIn 0.8s ease-in-out forwards;
+}
+
+/* Define keyframes for the fade-in animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px); /* Start slightly above */
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Apply delays to create a staggered effect */
+.landing-container > .title-1 {
+  animation-delay: 0.2s; /* Delay for the title */
+}
+
+.landing-container > .subtitle-1 {
+  animation-delay: 0.4s; /* Add additional delay for each subsequent child */
+}
+
+.landing-container > .subtitle-2 {
+  animation-delay: 0.4s;
+}
+
+.landing-container > .waitlist {
+  animation-delay: 0.4s;
+}
+
+.landing-container > .demo-images {
+  animation-delay: 1s;
+}
+
+.landing-container > .copywright {
+  animation-delay: 1.2s;
+}
+.title-1 {
+  font-size: 3em;
+  font-weight: bold;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  
+}
+
+.title-1 img {
+  width: 100%; 
+  max-width: 600px; 
+  height: auto; 
+  transition: transform 0.3s ease-in-out;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
+}
+.title-1 img:hover {
+  transform: scale(1.05); 
+}
+
+.subtitle-1 {
+  margin-top: 20px;
+  font-size: 2em;
+  font-weight: bold;
+  color: #fff;
+}
+
+.subtitle-2 {
+  margin-top: 15px;
+  font-size: 1em;
+  color: #ccc;
+}
+.joined-waitlist1 {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin: 20px 0;
+  background: linear-gradient(to top, #6b4caf, #7c58c9);
+  color: #ffffff;
+  font-weight: 800;
+  border-radius: 2%;
+  padding: .5%;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, .6); 
+  transition: transform 0.3s ease-in-out;
+  
+}
+.joined-waitlist1:hover {
+  transform: scale(1.05); 
+}
+
+.waitlist {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin: 20px 0;
+  background-color: #fff;
+  border-radius: 2%;
+  padding: .3%;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, .6); 
+  transition: transform 0.3s ease-in-out;
+}
+.waitlist:hover {
+  transform: scale(1.05); 
+}
+
+.waitlist input {
+  padding: 8px;
+  color: #000000;
+  margin-right: 3px;
+  background: linear-gradient(to right, #cccce9, #ffffff);
+  
+}
+.waitlist input:focus {
+  background: linear-gradient(to right, #ffffff, #ffffff);
+  outline: none; 
+}
+
+.waitlist button {
+  padding: 8px;
+  background-color: #6b4caf;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  border-radius: 5%;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+.join-text {
+  color: white;
+  font-size: .8em;
+  font-weight: 800;
+ 
+}
+.demo-images {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  padding-top: 10px;
+  padding-left: 10%;
+  padding-right: 10%;
+}
+
+.demo-images img {
+  width: 60%; 
+  max-width: 500px; 
+  height: auto; 
+  margin-right: 2%; 
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 1); 
+  border-radius: 2%;
+  transition: transform 0.3s ease-in-out;
+}
+.demo-images img:hover {
+  transform: scale(1.05); 
+}
+.copywright {
+margin-top: 25px;
+  font-size: 0.8em;
+  color: #ccc;
+}
+
+
+/* Media query for smaller screens */
+@media (max-width: 700px) {
+  .title-1 {
+    font-size: 2.5em; 
+  }
+
+  .subtitle-1 {
+    font-size: 1.2em; 
+  }
+
+  .subtitle-2 {
+    font-size: 0.7em;
+  }
+
+  .copywright {
+    font-size: 0.5em; 
+  }
+  .waitlist {
+    font-size: 0.7em;
+  }
+}
+
+
+
+
+.center-1 {
+  
+  position: relative;
+}
+
+.btn-1 {
+  width: 90px;
+  height: 30px;
+  cursor: pointer;
+  background: transparent;
+  border: 1px solid #91C9FF;
+  outline: none;
+  transition: 1s ease-in-out;
+}
+
+.btn-1 svg {
+  position: absolute;
+  left: 0;
+  top: 0;
+  fill: none;
+  stroke: #fff;
+  stroke-dasharray: 150 480;
+  stroke-dashoffset: 150;
+  transition: 1s ease-in-out;
+}
+
+.btn-1:hover {
+  transition: 1s ease-in-out;
+  background: #4F95DA;
+}
+
+.btn-1:hover svg {
+  stroke-dashoffset: -480;
+}
+
+.btn-1 span {
+  color: white;
+  
+  font-size: .9em;
+  font-weight: 100;
+ 
+}
