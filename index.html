@@ -1,33 +1,126 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dreambox</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body
+    class="bg-gradient-to-b from-[#101726] to-black"
+    style="background: linear-gradient(to bottom, #242424, #131313)"
+  >
+    <div class="landing-container">
+      <div class="title-1">
+        <img src="./logo-big.png" alt="Dream Comics" />
+      </div>
+      <div class="subtitle-1">Something Special Coming Soon</div>
+      <div class="subtitle-2">
+        We are building the very best visual storytelling platform.
+      </div>
 
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Dreambox</title>
-
-        <script src="https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio,line-clamp"></script>
-
-        <!-- Google tag (gtag.js) -->
-        <script async src="https://www.googletagmanager.com/gtag/js?id=G-F0DTJ10KTF"></script>
-        <script>
-            window.dataLayer = window.dataLayer || [];
-            function gtag() { dataLayer.push(arguments); }
-            gtag('js', new Date());
-
-            gtag('config', 'G-F0DTJ10KTF');
-        </script>
-    </head>
-
-    <body class="bg-gradient-to-b from-[#101726] to-black">
-        <div class="h-screen w-full max-w-[800px] mx-auto relative">
-            <div class="absolute top-2 right-0 flex justify-end items-center text-xs text-white uppercase pr-2">
-                
-            </div>
-            <div class="absolute left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2">
-                <img src="https://i.imgur.com/7yHnfQc.jpg" alt="Dreambox Logo" class="w-[200px] shadow-md">
-            </div>
+      <div class="waitlist" id="waitlist">
+        <input
+          type="email"
+          placeholder="Enter Email"
+          id="emailField"
+          value=""
+          oninput="handleInputChange(event)"
+          onkeydown="if(event.keyCode===13){handleSubmitEmail();}"
+        />
+        <div class="center-1">
+          <button class="btn-1" onClick="handleSubmitEmail()">
+            <svg viewBox="0 0 180 60" class="border">
+              <polyline points="179,1 179,59 1,59 1,1 179,1" class="bg-line" />
+              <polyline points="179,1 179,59 1,59 1,1 179,1" class="hl-line" />
+            </svg>
+            <div class="join-text">Join Waitlist</div>
+          </button>
         </div>
-    </body>
+      </div>
+      <div className="joined-waitlist1" id="joined-waitlist">
+        You have joined the waitlist!
+      </div>
 
+      <div class="demo-images">
+        <img src="./landing-1.png" alt="Demo Image 1" />
+        <img src="./landing-2.png" alt="Demo Image 2" />
+      </div>
+
+      <div class="copywright">
+        Copywright © 2024 Dreambox. All rights reserved.
+      </div>
+    </div>
+    <script>
+      let joined = false;
+      let emailFieldText = "";
+      function toggleWaitlist(joined) {
+        const waitlistDiv = document.getElementById("waitlist");
+        const joinedWaitlistDiv = document.getElementById("joined-waitlist");
+
+        if (joined) {
+          waitlistDiv.style.display = "none";
+          joinedWaitlistDiv.style.display = "block";
+          joinedWaitlistDiv.style.display = "flex";
+          joinedWaitlistDiv.style.flexDirection = "row";
+          joinedWaitlistDiv.style.alignItems = "center";
+          joinedWaitlistDiv.style.margin = "20px 0";
+          joinedWaitlistDiv.style.background =
+            "linear-gradient(to top, #6b4caf, #7c58c9)";
+          joinedWaitlistDiv.style.color = "#ffffff";
+          joinedWaitlistDiv.style.fontWeight = "800";
+          joinedWaitlistDiv.style.borderRadius = "2%";
+          joinedWaitlistDiv.style.padding = ".5%";
+          joinedWaitlistDiv.style.boxShadow = "0 4px 8px rgba(0, 0, 0, .6)";
+          joinedWaitlistDiv.style.transition = "transform 0.3s ease-in-out";
+        } else {
+          waitlistDiv.style.display = "";
+          joinedWaitlistDiv.style.display = "none";
+        }
+      }
+      toggleWaitlist(false);
+      function handleInputChange(event) {
+        emailFieldText = event.target.value;
+      }
+      const handleSubmitEmail = () => {
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        const emailField = document.getElementById("emailField");
+        emailFieldText = emailField.value.trim();
+
+        if (!emailRegex.test(emailFieldText)) {
+          console.error("Invalid email address");
+          emailField.value = "";
+          emailField.placeholder = "Enter Valid Email Address";
+          return;
+        }
+
+        const payload = {
+          email: emailFieldText,
+        };
+
+        fetch("https://api.dreambox.gg/join_waitlist", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(payload),
+        })
+          .then((response) => response.json())
+          .then((data) => {
+            // Handle the response data as needed
+            console.log(data);
+            if (data.success) {
+              toggleWaitlist(true);
+            }
+          })
+          .catch((error) => {
+            console.error("Error:", error);
+          })
+          .finally(() => {
+            emailField.value = "";
+            emailField.placeholder = "Enter Email";
+          });
+      };
+    </script>
+  </body>
 </html>
